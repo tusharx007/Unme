@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FOR MY SUNANDA 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Pacifico&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+--pop-pink: #ff477e;
+--glass: rgba(255, 255, 255, 0.3);
+--book-bg: #fffaf0;
+--gold: #ffd700;
+}
+
+body {
+margin: 0;
+font-family: 'Comic Neue', cursive;
+background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+transition: background 1.5s ease;
+color: #333;
+overflow: hidden;
+height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+}
+
+/* Heart Animation */
+.heart-container { position: fixed; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+.heart { position: absolute; bottom: -10%; animation: float 6s linear infinite; opacity: 0.6; }
+@keyframes float {
+0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+20% { opacity: 0.6; }
+100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+}
+
+h1 { font-family: 'Pacifico', cursive; font-size: clamp(24px, 7vw, 36px); color: white; text-shadow: 2px 2px var(--pop-pink); margin: 10px; z-index: 5; }
+
+/* Music Toggle Button */
+#musicToggle {
+position: fixed; top: 15px; right: 15px; z-index: 1000;
+background: white; border: none; border-radius: 50%; width: 50px; height: 50px;
+box-shadow: 0 4px 10px rgba(0,0,0,0.1); cursor: pointer; font-size: 24px;
+display: flex; align-items: center; justify-content: center;
+}
+
+.section {
+display: none;
+flex-direction: column;
+align-items: center;
+width: 90%;
+max-width: 450px;
+background: var(--glass);
+padding: 25px;
+border-radius: 40px;
+backdrop-filter: blur(15px);
+border: 2px solid rgba(255,255,255,0.5);
+z-index: 10;
+animation: pop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.active { display: flex; }
+@keyframes pop { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+
+/* Book Styling */
+.book-container { width: 100%; height: 320px; perspective: 1000px; margin: 15px 0; }
+.book-page {
+width: 100%; height: 100%; background: var(--book-bg);
+border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+padding: 20px; box-sizing: border-box; display: none;
+flex-direction: column; justify-content: center;
+border-left: 8px solid #f3e5ab; animation: flipPage 0.5s ease-out;
+}
+.book-page.show { display: flex; }
+.page-icon { font-size: 45px; margin-bottom: 10px; }
+.page-text { font-family: 'Caveat', cursive; font-size: clamp(20px, 5vw, 25px); color: #4a332d; font-weight: 700; line-height: 1.3; }
+
+@keyframes flipPage { from { transform: rotateY(-20deg); opacity: 0; } to { transform: rotateY(0deg); opacity: 1; } }
+
+.btn-big {
+font-size: 18px; padding: 12px 25px; border-radius: 50px;
+border: 3px solid white; background: var(--pop-pink); color: white;
+cursor: pointer; box-shadow: 0 5px 0 #d03060; transition: 0.1s; margin: 10px;
+}
+.btn-big:active { transform: translateY(3px); box-shadow: 0 2px 0 #d03060; }
+
+/* Timer and Interaction */
+#timerBox { font-size: 22px; color: #d63384; margin: 15px 0; background: white; padding: 10px; border-radius: 20px; border: 3px solid var(--pop-pink); font-weight: 900; }
+#kissArea { width: 100%; height: 120px; background: rgba(255,255,255,0.4); border-radius: 25px; border: 3px dashed white; position: relative; overflow: hidden; margin: 10px 0; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+.lip { position: absolute; font-size: 30px; pointer-events: none; animation: kissPop 0.8s ease-out forwards; }
+@keyframes kissPop { 0% { transform: scale(0); opacity: 0; } 50% { opacity: 1; } 100% { transform: scale(1.5) translateY(-40px); opacity: 0; } }
+
+/* Credits Scrolling */
+#credits { display: none; position: fixed; inset: 0; background: black; color: white; z-index: 2000; overflow: hidden; }
+.scroll { position: absolute; width: 100%; top: 100%; animation: scrollUp 45s linear forwards; font-family: 'Caveat', cursive; text-align: center; }
+@keyframes scrollUp { 0% { top: 100%; } 100% { top: -3500px; } }
+
+.award-title { color: var(--gold); font-size: 1.8rem; margin-top: 40px; }
+.award-win { font-size: 2.5rem; color: white; margin-bottom: 10px; }
+.credit-header { color: var(--pop-pink); font-size: 3.5rem; font-family: 'Pacifico'; margin-top: 100px; }
+</style>
+</head>
+<body>
+
+<div class="heart-container" id="heartContainer"></div>
+
+<audio id="loveSong" loop>
+<source src="jenelagahun.mp3" type="audio/mpeg">
+</audio>
+
+<button id="musicToggle" onclick="toggleMusic()">🎵</button>
+
+<div class="section active" id="p0">
+<h1>Hi Sunanda!</h1>
+<p>I have a secret for you... 💖</p>
+<button class="btn-big" onclick="startApp()">Unlock It! 🎁</button>
+</div>
+
+<div class="section" id="p1">
+<h1>Our Time</h1>
+<p>Days since **19 Jan 2026**:</p>
+<div id="timerBox">Calculating...</div>
+<button class="btn-big" onclick="next(2)">Surprise! ✨</button>
+</div>
+
+<div class="section" id="p2">
+<h1>A Kiss for You 💋</h1>
+<div id="kissArea" onclick="addKiss(event)">TAP TO KISS</div>
+<button class="btn-big" onclick="next(3)">Read My Heart 📖</button>
+</div>
+
+<div class="section" id="p3">
+<h1 id="bookTitle">Our Story</h1>
+<div class="book-container">
+<div class="book-page show" id="pg1"><div class="page-icon">🌷</div><div class="page-text">“Happy Birthday, Sunanda… the girl who unknowingly became the most important part of my heartbeat.”</div></div>
+<div class="book-page" id="pg2"><div class="page-icon">❤️</div><div class="page-text">“I didn’t plan to love you this deeply… but somewhere between our small talks and silent moments, you became my whole world.”</div></div>
+<div class="book-page" id="pg3"><div class="page-icon">😠</div><div class="page-text">“You get angry quickly… but even in your anger, I see innocence. You look so beautiful when you’re mad, because it shows you care.”</div></div>
+<div class="book-page" id="pg4"><div class="page-icon">🌙</div><div class="page-text">“My favorite feeling is falling asleep while watching you… knowing that the girl I love is right there, safe, real, and mine.”</div></div>
+<div class="book-page" id="pg5"><div class="page-icon">💭</div><div class="page-text">“Sometimes I overthink, sometimes I get scared… but one thing I never doubt is my love for you.”</div></div>
+<div class="book-page" id="pg6"><div class="page-icon">🤍</div><div class="page-text">“You don’t even realize how much peace you give me just by existing.”</div></div>
+<div class="book-page" id="pg7"><div class="page-icon">🔒</div><div class="page-text">“If forever exists anywhere in this world… I want it to start and end with you.”</div></div>
+<div class="book-page" id="pg8"><div class="page-icon">💌</div><div class="page-text">“Even if the world changes, even if time changes… my feelings for you will stay the same — pure, patient, and forever yours.”</div></div>
+<div class="book-page" id="pg9"><div class="page-icon">✨</div><div class="page-text">“You are not just my love… you are the home my heart was searching for.”</div></div>
+</div>
+<div style="display:flex; gap:10px;">
+<button class="btn-big" id="prevBtn" style="background:#666; visibility:hidden;" onclick="turnPage(-1)">Back</button>
+<button class="btn-big" id="nextBtn" onclick="turnPage(1)">Next ➜</button>
+<button class="btn-big" id="bookFinalBtn" style="display:none;" onclick="next(4)">Continue ❤️</button>
+</div>
+</div>
+
+<div class="section" id="p4">
+<h1>Final Promise</h1>
+<div style="font-size:80px;">✨🤝✨</div>
+<p>"Our secret sign never fades."</p>
+<button class="btn-big" onclick="next(5)">One Last Thing... 💍</button>
+</div>
+
+<div class="section" id="p5">
+<h1>I LOVE YOU!</h1>
+<p>Happy Birthday, Sunanda!</p>
+<button class="btn-big" onclick="startCredits()">Watch Finale 🎬</button>
+</div>
+
+<div id="credits">
+<div class="scroll">
+<h1 class="credit-header">THE BIRTHDAY AWARDS</h1>
+<p style="font-size: 1.5rem; color: #aaa;">FOR HER (THE QUEEN)</p>
+<div class="award-title">🏆 BEST ACTRESS IN A LEAD ROLE</div>
+<div class="award-win">Sunanda 👑</div>
+<div class="award-title">🥇 MOST BEAUTIFUL SMILE</div>
+<div class="award-win">Sunanda ✨</div>
+<div class="award-title">😡 BEST PERFORMANCE IN AN ANGER SCENE</div>
+<div class="award-win">Sunanda (So Cute!)</div>
+<div class="award-title">💖 OWNER OF MY HEART AWARD</div>
+<div class="award-win">Sunanda Forever</div>
+<div style="margin: 80px 0; border-top: 1px solid #444; width: 60%; margin-left: 20%;"></div>
+<p style="font-size: 1.5rem; color: #aaa;">FOR HIM (THE LOVER)</p>
+<div class="award-title">🏆 BEST SUPPORTING ACTOR</div>
+<div class="award-win">Tushar 🙋‍♂️</div>
+<div class="award-title">🧿 MOST PROTECTIVE BOYFRIEND</div>
+<div class="award-win">Winner: Tushar</div>
+<div class="award-title">🤡 BEST AT TEASING HER</div>
+<div class="award-win">Tushar (With Love!)</div>
+<div class="award-title">💎 LUCKIEST GUY IN THE WORLD</div>
+<div class="award-win">Tushar (Because of You)</div>
+<div class="credit-header">PRODUCTION TEAM</div>
+<div style="margin-top: 50px;">
+<p style="font-size: 1.5rem; color: var(--pop-pink);">PRODUCED BY</p>
+<div style="font-size: 2.5rem;">Tushar77</div>
+</div>
+<h1 class="credit-header">I LOVE YOU</h1>
+<h1 style="font-size:4rem;">SUNANDA</h1>
+<div style="font-size:100px; margin:50px 0;">💖🤝✨</div>
+<h1 style="font-size:2rem; color: var(--gold);">HAPPY BIRTHDAY!</h1>
+<p>(The Story Continues Forever...)</p>
+</div>
+</div>
+
+<script>
+const startDate = new Date(2026, 0, 19); // 19 Jan 2026
+let currentPage = 1;
+const song = document.getElementById('loveSong');
+
+const colors = {
+1: "#ffccd5", 2: "#ff4d6d", 3: "#ef233c", 4: "#2b2d42",
+5: "#8d99ae", 6: "#d8e2dc", 7: "#fb6f92", 8: "#ffb3c1", 9: "#f08080"
+};
+
+function startApp() {
+// Start Music
+song.play().then(() => {
+document.getElementById('musicToggle').innerText = "❤️";
+}).catch(e => console.log("Autoplay blocked - user must click first", e));
+
+next(1);
+createHearts();
+}
+
+function toggleMusic() {
+if (song.paused) {
+song.play();
+document.getElementById('musicToggle').innerText = "❤️";
+} else {
+song.pause();
+document.getElementById('musicToggle').innerText = "🎵";
+}
+}
+
+function next(n) {
+document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+document.getElementById('p'+n).classList.add('active');
+// Reset background except for book section
+if(n !== 3) document.body.style.background = "linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)";
+else updateStyle();
+}
+
+function turnPage(dir) {
+document.getElementById(`pg${currentPage}`).classList.remove('show');
+currentPage += dir;
+document.getElementById(`pg${currentPage}`).classList.add('show');
+updateStyle();
+
+document.getElementById('prevBtn').style.visibility = (currentPage === 1) ? 'hidden' : 'visible';
+document.getElementById('nextBtn').style.display = (currentPage === 9) ? 'none' : 'block';
+document.getElementById('bookFinalBtn').style.display = (currentPage === 9) ? 'block' : 'none';
+}
+
+function updateStyle() {
+document.body.style.background = colors[currentPage];
+}
+
+function createHearts() {
+const container = document.getElementById('heartContainer');
+setInterval(() => {
+const h = document.createElement('div');
+h.className = 'heart';
+h.innerHTML = '❤️';
+h.style.left = Math.random() * 100 + 'vw';
+h.style.fontSize = (Math.random() * 20 + 10) + 'px';
+h.style.animationDuration = (Math.random() * 3 + 3) + 's';
+container.appendChild(h);
+setTimeout(() => h.remove(), 6000);
+}, 500);
+}
+
+function updateTimer() {
+const diff = new Date() - startDate;
+const d = Math.floor(diff / 86400000);
+const h = Math.floor((diff / 3600000) % 24);
+const m = Math.floor((diff / 60000) % 60);
+const s = Math.floor((diff / 1000) % 60);
+document.getElementById('timerBox').innerText = `${d}d ${h}h ${m}m ${s}s`;
+}
+setInterval(updateTimer, 1000);
+
+function addKiss(event) {
+const area = document.getElementById('kissArea');
+const rect = area.getBoundingClientRect();
+const lip = document.createElement('span');
+lip.className = 'lip';
+lip.innerHTML = '💋';
+lip.style.left = (event.clientX - rect.left - 15) + 'px';
+lip.style.top = (event.clientY - rect.top - 15) + 'px';
+area.appendChild(lip);
+setTimeout(() => lip.remove(), 800);
+}
+
+function startCredits() {
+document.getElementById('credits').style.display = 'block';
+}
+</script>
+</body>
+</html>
